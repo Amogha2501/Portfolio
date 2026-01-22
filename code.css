@@ -1,4 +1,3 @@
-/* Modern CSS Reset and Base Styles */
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -15,11 +14,9 @@ body {
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
-    /* Reduce animation intensity for performance */
     will-change: background-position;
 }
 
-/* Animated background "floating elements" - Optimized for performance */
 body::after {
     content: '';
     position: fixed;
@@ -34,7 +31,6 @@ body::after {
         radial-gradient(circle at 90% 80%, rgba(255,255,255,0.03) 0%, transparent 60%) 100% 100% / 60% 60% no-repeat,
         radial-gradient(circle at 40% 50%, rgba(255,255,255,0.03) 0%, transparent 60%) 50% 50% / 50% 50% no-repeat;
     animation: floatingElements 25s ease-in-out infinite alternate;
-    /* Optimize rendering */
     will-change: transform;
     backface-visibility: hidden;
 }
@@ -62,7 +58,6 @@ body::before {
     }
 }
 
-/* Preloader Styles */
 #preloader {
     position: fixed;
     top: 0;
@@ -111,8 +106,6 @@ body::before {
     transform: translateY(50px) scale(0.8);
     transition: opacity 1s ease-out, transform 1s ease-out;
 }
-
-/* Name letter animation */
 .name-letter {
     display: inline-block;
     opacity: 0;
@@ -807,9 +800,8 @@ h1, h2, h3 {
     margin-top: 10px;
 }
 
-/* About Section - Clean Refactored Structure */
 .about-section {
-    scroll-margin-top: 70px; /* Account for fixed header */
+    scroll-margin-top: 70px;
 }
 
 .about-container {
@@ -1047,7 +1039,6 @@ a:hover {
     transform: translateY(0);
 }
 
-/* Hide sections initially for performance */
 [data-animate-on-scroll]:not(.animate-in) {
     opacity: 0;
     visibility: hidden;
@@ -1287,7 +1278,6 @@ a:hover {
     animation: shimmer 2s infinite;
 }
 
-/* This animation will be controlled by JavaScript */
 @keyframes growWidth {
     from { width: 0; }
     to { width: var(--target-width, 70%); }
@@ -1328,6 +1318,9 @@ a:hover {
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .featured-project-card:hover {
@@ -1340,8 +1333,29 @@ a:hover {
     height: 180px;
 }
 
+.udaan-thumbnail {
+    padding: 0;
+}
+
+.udaan-thumbnail .project-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    padding: 0;
+    margin: 0;
+}
+
 .featured-content {
     padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.featured-content .project-actions {
+    margin-top: auto;
 }
 
 .project-title {
@@ -1396,38 +1410,11 @@ a:hover {
 
 .supporting-projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
     margin-top: 25px;
-}
-
-.supporting-project-card {
-    background: rgba(30, 41, 59, 0.5);
-    border-radius: 12px;
-    padding: 25px;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.supporting-project-card:hover {
-    transform: translateY(-5px);
-    background: rgba(56, 70, 97, 0.5);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.supporting-project-card .project-title {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-}
-
-.project-subtitle {
-    color: #a0aec0;
-    margin: 0 0 15px 0;
-    font-size: 0.95rem;
-}
-
-.supporting-project-card .tech-stack {
-    margin-bottom: 0;
+    align-items: stretch;
+    justify-items: stretch;
 }
 
 /* Project Card Elements */
@@ -1438,19 +1425,19 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #ffffff;
 }
 
 .project-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
     object-position: center;
     transition: transform 0.5s ease;
-    /* Ensure proper alignment within flex container */
-    flex-shrink: 0;
 }
 
-/* StudySpark AI Thumbnail Container - Cover Style */
 .study-spark-thumbnail {
     background: #ffffff;
     border-radius: 12px;
@@ -1473,7 +1460,6 @@ a:hover {
     height: auto;
     object-fit: contain;
     object-position: center;
-    /* Anchor the logo visually within the container */
     position: relative;
     z-index: 2;
 }
@@ -1482,45 +1468,121 @@ a:hover {
     transform: scale(1.05);
 }
 
-/* Feast Flow Thumbnail Container - Clean Branding */
-.feast-flow-thumbnail {
-    background: #ffffff;
+/* Supporting Projects - Polished Layout */
+.supporting-project-card {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 360px;
     border-radius: 12px;
-    padding: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    justify-content: flex-start;
+}
+
+.supporting-project-card:hover {
+    transform: translateY(-5px);
+    background: rgba(56, 70, 97, 0.5);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.supporting-project-card:first-child .project-title,
+.supporting-project-card:nth-child(3) .project-title {
+    font-size: 1.9rem;
+}
+
+.supporting-project-card .project-title {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+    color: #3498db;
+}
+
+.supporting-project-card .project-subtitle {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #a0aec0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.supporting-project-card .tech-stack {
+    margin: 0 0 25px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.supporting-project-card .tech-badge {
+    background: rgba(52, 152, 219, 0.2);
+    color: #3498db;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.supporting-project-card .project-actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    padding-top: 15px;
+    margin-bottom: 0;
+}
+
+.supporting-project-card .project-actions .btn {
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+    padding: 12px 20px;
+    font-weight: 500;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(233, 69, 96, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Supporting Project Image Containers */
+.supporting-image {
+    width: 100%;
+    height: 180px;
+    background: #ffffff;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 180px;
-    width: 100%;
-    position: relative;
     overflow: hidden;
+    margin-bottom: 15px;
 }
 
-.feast-flow-thumbnail .project-image {
-    max-width: 75%;
-    max-height: 75%;
+.supporting-image .project-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    padding: 0;
+    margin: 0;
+}
+
+.supporting-project-card .project-image {
+    max-width: 100%;
+    max-height: 100%;
     width: auto;
     height: auto;
     object-fit: contain;
     object-position: center;
-    /* Anchor the logo visually within the container */
-    position: relative;
-    z-index: 2;
+    padding: 0;
+    margin: 0;
 }
 
-/* Hover effect for Feast Flow thumbnail - Subtle and grounded */
-.featured-project-card:hover .feast-flow-thumbnail {
-    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
-}
-
-.featured-project-card:hover .feast-flow-thumbnail .project-image {
-    transform: scale(1.03);
-}
-
-/* Hover effect for StudySpark thumbnail - Subtle and grounded */
+/* Hover effect for StudySpark thumbnail */
 .featured-project-card:hover .study-spark-thumbnail {
     box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1);
     transform: translateY(-1px);
@@ -1592,44 +1654,6 @@ a:hover {
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-}
-
-/* UHV/Values Section */
-.values-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 40px;
-    align-items: start;
-}
-
-.value-card-large {
-    background: rgba(30, 41, 59, 0.6);
-    padding: 40px;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.value-icon {
-    font-size: 3rem;
-    color: #e94560;
-    margin-bottom: 20px;
-}
-
-.value-card-large h3 {
-    color: #3498db;
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-}
-
-.value-card-large p {
-    color: #cbd5e0;
-    line-height: 1.8;
-    margin-bottom: 15px;
-}
-
-.value-highlights {
-    display: grid;
-    gap: 20px;
 }
 
 .highlight-item {
@@ -1720,29 +1744,29 @@ a:hover {
 }
 
 .contact-card-email {
-    background: rgba(30, 41, 59, 0.3); /* More subtle background */
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Less prominent border */
-    padding: 18px; /* Slightly smaller padding */
-    cursor: default; /* No pointer cursor */
+    background: rgba(30, 41, 59, 0.3); 
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+    padding: 18px; 
+    cursor: default; 
 }
 
 .contact-card-email:hover {
-    transform: none; /* No hover effect */
-    background: rgba(30, 41, 59, 0.3); /* Maintain subtle background */
-    box-shadow: none; /* No shadow on hover */
+    transform: none;
+    background: rgba(30, 41, 59, 0.3); 
+    box-shadow: none; 
 }
 
 .contact-card-email .contact-icon {
-    color: #a0aec0; /* More muted color */
+    color: #a0aec0;
 }
 
 .contact-card-email h3 {
-    color: #a0aec0; /* Muted heading color */
+    color: #a0aec0; 
 }
 
 .contact-card-email p {
-    color: #cbd5e0; /* Slightly brighter text for email */
-    font-weight: 500; /* Make email more readable */
+    color: #cbd5e0; 
+    font-weight: 500;   
 }
 
 .contact-link {
@@ -1937,15 +1961,6 @@ a:hover {
     color: #e94560;
 }
 
-.modal-image {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
 .modal-body h2 {
     color: #3498db;
     margin-top: 0;
@@ -1981,7 +1996,12 @@ a:hover {
 }
 
 /* Media Queries for Responsiveness */
-@media (max-width: 992px) {
+@media (max-width: 1023px) {
+    .supporting-projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
     .about-grid,
     .contact-container,
     .values-container {
@@ -2003,7 +2023,12 @@ a:hover {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+    .supporting-projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
     .container {
         padding: 0 15px;
     }
@@ -2094,7 +2119,5 @@ a:hover {
         padding: 40px 15px;
     }
     
-    .modal-image {
-        height: 200px;
-    }
+
 }
