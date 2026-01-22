@@ -1988,6 +1988,23 @@ a:hover {
     margin-bottom: 8px;
 }
 
+.tech-stack-details {
+    background: rgba(56, 70, 97, 0.4);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 3px solid #3498db;
+}
+
+.tech-stack-details p {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.tech-stack-details strong {
+    color: #3498db;
+}
+
 .project-links {
     display: flex;
     gap: 15px;
