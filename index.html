@@ -955,18 +955,36 @@
             const nameText = nameElement.textContent;
             nameElement.innerHTML = ''; // Clear original text content
 
-            nameText.split('').forEach((char, index) => {
-                const span = document.createElement('span');
-                span.textContent = char;
-                span.classList.add('name-letter');
-                // If it's a space, ensure it doesn't cause layout issues
-                if (char === ' ') {
-                    span.innerHTML = '&nbsp;';
+            const words = nameText.split(' ');
+            let letterIndex = 0;
+
+            words.forEach((word, wordIdx) => {
+                const wordSpan = document.createElement('span');
+                wordSpan.style.display = 'inline-block';
+                wordSpan.style.whiteSpace = 'nowrap';
+
+                word.split('').forEach((char) => {
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    span.classList.add('name-letter');
+                    span.style.animationDelay = `${letterIndex * delayPerLetter}ms`;
+                    wordSpan.appendChild(span);
+                    letterIndex++;
+                });
+
+                nameElement.appendChild(wordSpan);
+
+                // Add space between words, except after the last word
+                if (wordIdx < words.length - 1) {
+                    const spaceSpan = document.createElement('span');
+                    spaceSpan.innerHTML = '&nbsp;';
+                    spaceSpan.style.display = 'inline-block';
+                    nameElement.appendChild(spaceSpan);
+                    letterIndex++;
                 }
-                span.style.animationDelay = `${index * delayPerLetter}ms`;
-                nameElement.appendChild(span);
             });
         }
+
 
         // Preloader and Header Animation functionality
         window.addEventListener('load', () => {
