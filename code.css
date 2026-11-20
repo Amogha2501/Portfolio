@@ -1042,11 +1042,12 @@ a:hover {
 }
 
 .udaan-thumbnail .project-image {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    object-position: center;
     padding: 0;
     margin: 0;
 }
@@ -1121,7 +1122,7 @@ a:hover {
     flex: 1 1 0;
     min-width: 0;
     max-width: 140px;
-    padding: 10px 8px;
+    padding: 10px 16px;
     font-size: 0.8rem;
     text-align: center;
     display: flex;
@@ -2126,4 +2127,424 @@ img {
     .contact-card {
         width: 100%;
     }
-}
+}
+
+/* Featured Projects - Two Column Layout */
+
+.featured-projects-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 25px;
+}
+
+.featured-project-card {
+    width: 100%;
+    min-width: 0;
+}
+/* Mobile layout */
+@media (max-width: 600px) {
+    .featured-projects-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .featured-project-card:nth-child(3) {
+        grid-column: 1;
+        width: 100%;
+    }
+}
+
+/* Supporting Projects - Single Continuous Row */
+
+.supporting-projects-grid {
+    display: block !important;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.supporting-projects-track {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: max-content;
+    animation: supportingProjectsLoop 45s linear infinite;
+}
+
+.supporting-projects-group {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch;
+    gap: 25px;
+    width: max-content;
+    flex-shrink: 0;
+    padding-right: 25px;
+}
+
+.supporting-project-card {
+    flex: 0 0 280px !important;
+    width: 280px !important;
+    min-width: 280px !important;
+    height: 360px !important;
+    min-height: 360px !important;
+    box-sizing: border-box;
+}
+
+@keyframes supportingProjectsLoop {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.supporting-projects-grid:hover .supporting-projects-track {
+    animation-play-state: paused;
+}
+
+/* Supporting Projects - Larger Cards */
+
+.supporting-project-card {
+    flex: 0 0 300px !important;
+    width: 300px !important;
+    min-width: 300px !important;
+
+    height: 440px !important;
+    min-height: 440px !important;
+
+    padding: 24px !important;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Keep descriptions readable */
+.supporting-project-card .project-subtitle {
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+/* Technology badges */
+.supporting-project-card .tech-stack {
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+/* Keep buttons visible at the bottom */
+.supporting-project-card .project-actions {
+    margin-top: auto !important;
+    padding-top: 12px;
+    flex-shrink: 0;
+}
+
+.supporting-project-card .project-actions .btn {
+    width: 100%;
+    max-width: 220px;
+}
+
+/* Maintain horizontal scrolling */
+.supporting-projects-group {
+    gap: 22px;
+    padding-right: 22px;
+}
+
+/* Slower movement for larger cards */
+.supporting-projects-track {
+    animation-duration: 65s !important;
+}
+
+/* ==========================================
+   SUPPORTING PROJECTS - UNIFORM CARD DESIGN
+========================================== */
+
+/* Equal card dimensions */
+.supporting-project-card {
+    flex: 0 0 300px !important;
+    width: 300px !important;
+    min-width: 300px !important;
+    height: 495px !important;
+    min-height: 495px !important;
+
+    padding: 24px !important;
+    box-sizing: border-box !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+}
+
+/* Same title size and reserved space */
+.supporting-project-card .project-title,
+.supporting-project-card:first-child .project-title,
+.supporting-project-card:nth-child(3) .project-title {
+    font-size: 1.5rem !important;
+    line-height: 1.35 !important;
+    font-weight: 600 !important;
+    min-height: 2.7em;
+    margin: 0 0 14px 0 !important;
+}
+
+/* Consistent description area */
+.supporting-project-card .project-subtitle {
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+    height: 105px;
+    min-height: 105px;
+    max-height: 105px;
+    overflow: hidden;
+    margin: 0 0 18px 0 !important;
+    flex: none !important;
+}
+
+/* Consistent technology badge area */
+.supporting-project-card .tech-stack {
+    min-height: 105px;
+    max-height: 105px;
+    overflow: hidden;
+    align-content: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px !important;
+    margin: 0 0 15px 0 !important;
+    flex-shrink: 0;
+}
+
+/* Same badge appearance */
+.supporting-project-card .tech-badge {
+    font-size: 0.8rem !important;
+    padding: 6px 11px !important;
+    line-height: 1.3;
+}
+
+/* Align all buttons at the bottom */
+.supporting-project-card .project-actions {
+    margin-top: auto !important;
+    padding-top: 10px;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-shrink: 0;
+}
+
+.supporting-project-card .project-actions .btn {
+    width: 100% !important;
+    max-width: 220px !important;
+    min-height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto !important;
+}
+
+/* ==========================================
+   SUPPORTING PROJECTS - FINAL CARD ALIGNMENT
+========================================== */
+
+/* Uniform card dimensions */
+.supporting-project-card {
+    flex: 0 0 300px !important;
+    width: 300px !important;
+    min-width: 300px !important;
+    height: 520px !important;
+    min-height: 520px !important;
+
+    padding: 24px !important;
+    box-sizing: border-box !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+}
+
+/* All project titles use the same font and reserved height */
+.supporting-project-card .project-title,
+.supporting-project-card:first-child .project-title,
+.supporting-project-card:nth-child(3) .project-title {
+    font-size: 1.5rem !important;
+    line-height: 1.35 !important;
+    font-weight: 600 !important;
+    height: 3.5em !important;
+    min-height: 3.5em !important;
+    margin: 0 0 12px 0 !important;
+}
+
+/* Descriptions: same starting and ending area */
+.supporting-project-card .project-subtitle {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+    height: 115px !important;
+    min-height: 115px !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin: 0 0 15px 0 !important;
+    flex: none !important;
+}
+
+/* Technology badges: consistent area */
+.supporting-project-card .tech-stack {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-content: flex-start !important;
+    gap: 8px !important;
+
+    height: 105px !important;
+    min-height: 105px !important;
+    max-height: none !important;
+    overflow: visible !important;
+
+    margin: 0 0 15px 0 !important;
+    flex-shrink: 0 !important;
+}
+
+.supporting-project-card .tech-badge {
+    font-size: 0.8rem !important;
+    padding: 6px 11px !important;
+}
+
+/* Align all buttons at the bottom */
+.supporting-project-card .project-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+
+    margin-top: auto !important;
+    padding-top: 10px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Make multiple buttons fit side by side */
+.supporting-project-card .project-actions .btn {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 46px !important;
+
+    padding: 10px 8px !important;
+    font-size: 0.78rem !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+}
+
+/* =========================================
+   SUPPORTING PROJECTS - RESPONSIVE 2x2 GRID
+========================================= */
+
+/* Main grid */
+.supporting-projects-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 25px !important;
+    width: 100%;
+    overflow: visible !important;
+    margin-top: 30px;
+    align-items: stretch;
+}
+
+/* Equal-sized cards */
+.supporting-project-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 440px !important;
+    min-height: 440px !important;
+    box-sizing: border-box !important;
+    padding: 25px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+}
+
+/* Uniform project headings */
+.supporting-project-card .project-title,
+.supporting-project-card:first-child .project-title,
+.supporting-project-card:nth-child(3) .project-title {
+    font-size: 1.5rem !important;
+    line-height: 1.35 !important;
+    font-weight: 600 !important;
+    min-height: 2.7em;
+    margin: 0 0 12px !important;
+}
+
+/* Consistent description styling */
+.supporting-project-card .project-subtitle {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+    min-height: 85px;
+    margin: 0 0 15px !important;
+    flex-grow: 0 !important;
+}
+
+/* Consistent technology badge area */
+.supporting-project-card .tech-stack {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-content: flex-start;
+    gap: 8px !important;
+    min-height: 85px;
+    margin: 0 0 15px !important;
+}
+
+/* Uniform technology badges */
+.supporting-project-card .tech-badge {
+    font-size: 0.8rem !important;
+    padding: 6px 11px !important;
+}
+
+/* Buttons aligned at the bottom */
+.supporting-project-card .project-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-top: auto !important;
+    padding-top: 12px;
+}
+
+/* Buttons have consistent dimensions */
+.supporting-project-card .project-actions .btn {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 220px;
+    min-height: 46px;
+    padding: 10px 8px !important;
+    font-size: 0.8rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    margin: 0 !important;
+}
+
+/* Tablet and mobile */
+@media (max-width: 700px) {
+    .supporting-projects-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .supporting-project-card {
+        height: auto !important;
+        min-height: 400px !important;
+    }
+
+    .supporting-project-card .project-subtitle {
+        min-height: auto;
+    }
+
+    .supporting-project-card .tech-stack {
+        min-height: auto;
+    }
+}
